@@ -1,0 +1,40 @@
+<div class="content" role="main">
+  <h1>{{ title }}</h1>
+  <div *ngIf="show == true" id="questions-catalog-container">
+    <div>
+      <button
+        *ngIf="securiteRoutiere.show == false"
+        type="button"
+        class="btn-stylised"
+        (click)="securiteRoutiere.show = true; show = false"
+      >
+        {{ securiteRoutiere.name }}
+      </button>
+      <button
+        *ngIf="questionsLorem.show == false"
+        type="button"
+        class="btn-stylised"
+        (click)="questionsLorem.show = true; show = false"
+      >
+        {{ questionsLorem.name }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Créer une nouvelle div rend la gestion plus simple en termes de CSS -->
+  <div *ngIf="securiteRoutiere.show == true">
+    <app-questions
+      (showCatalogEvent)="showCatalog($event)"
+      [questions]="questions.securiteRoutiere"
+    ></app-questions>
+  </div>
+
+  <div *ngIf="questionsLorem.show == true">
+    <app-questions
+      (showCatalogEvent)="showCatalog($event)"
+      [questions]="questions.questionsLorem2"
+    ></app-questions>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,69 @@
+<div *ngIf="question !== undefined; else resultsBlock" id="question">
+  <div>
+    Question {{ question.question_index + 1 }} sur {{ questions.length }}
+  </div>
+  <h2 class="question-title">{{ question.title }}</h2>
+  <div id="answers">
+    <div *ngFor="let answer of question.answers" class="answer">
+      <label
+        [for]="answerNumber[question.answers.indexOf(answer)]"
+        class="btn-stylised"
+      >
+        {{ answer }}
+        <input
+          type="radio"
+          [id]="answerNumber[question.answers.indexOf(answer)]"
+          name="answer"
+          [value]="question.answers.indexOf(answer)"
+          hidden
+        />
+      </label>
+    </div>
+  </div>
+  <button
+    type="submit"
+    id="validate-answer"
+    class="btn-stylised"
+    (click)="checkAnswer()"
+  >
+    Valider
+  </button>
+  <div *ngIf="question.done === true" id="answer-explanation" @fadeSlideIn>
+    <h3 *ngIf="answerStatus === true" id="answer-status" class="correct-answer">
+      Bonne réponse
+    </h3>
+    <h3 *ngIf="answerStatus === false" id="answer-status" class="wrong-answer">
+      Mauvaise réponse
+    </h3>
+    <p>{{ question.right_answer.explanation }}</p>
+    <button type="submit" class="btn-stylised" (click)="nextQuestion()">
+      Question suivante
+    </button>
+  </div>
+</div>
+
+<ng-template #resultsBlock>
+  <div id="results-container">
+    <h2>Note : {{ quizzResult }}/20</h2>
+    <ng-container *ngIf="quizzResult == 20">
+      <div>Parfait ! Vous êtes fin prêt à passer le code :)</div>
+    </ng-container>
+    <ng-container *ngIf="quizzResult >= 15 && quizzResult < 20">
+      <div>Excellent</div>
+    </ng-container>
+    <ng-container *ngIf="quizzResult > 10 && quizzResult < 15">
+      <div>Bon</div>
+    </ng-container>
+    <ng-container *ngIf="quizzResult < 11">
+      <div>Mauvais</div>
+    </ng-container>
+    <button
+      type="button"
+      id="return-catalog-btn"
+      class="btn-stylised"
+      (click)="reinitialise(true)"
+    >
+      Retourner au catalogue
+    </button>
+  </div>
+</ng-template>

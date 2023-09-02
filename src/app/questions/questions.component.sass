@@ -1,0 +1,72 @@
+@mixin media-min($min-width)
+  @media screen and (min-width: $min-width)
+    @content
+
+@mixin media-max($max-width)
+  @media screen and (max-width: $max-width)
+    @content
+    
+
+#question
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  min-height: 100%
+  padding: 0 5% 0 5%
+
+.question-title
+  text-transform: uppercase
+  
+.question-result
+  margin: 2%
+  overflow: hidden
+
+.answer
+  width: fit-content
+  margin: 5vh auto
+  border-radius: 60px
+  overflow: hidden
+
+#answer-explanation
+  margin: auto
+  padding: 1%
+  border-radius: 5px
+  backdrop-filter: brightness(0.9)
+
+#answer-status
+  width: fit-content
+  padding: 5px 10px 5px 10px
+  border-radius: 30px
+
+#answer-status.correct-answer
+  background-color: green
+
+#answer-status.wrong-answer
+  background-color: red
+
+
+label:has(>input[name="answer"])
+  padding: 20px
+  white-space: normal
+  border-radius: inherit
+  width: fit-content
+  margin: auto
+  transition: background-color .5s
+  @include media-min(768px)
+    padding: 25px
+  @include media-min(1024px)
+    padding: 30px
+
+label:has(>input[name="answer"]).btn-stylised:before
+  border-radius: 60px
+  background-color: rgb(0,128,0, 0.2)
+
+
+label:has(>input[name="answer"]:checked)
+  background: green
+  border: 2px solid
+
+#return-catalog-btn
+  position: sticky
+  bottom: 1%
