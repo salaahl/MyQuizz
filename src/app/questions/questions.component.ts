@@ -46,20 +46,17 @@ export class QuestionsComponent {
         this.answerStatus = true;
         this.quizzResult = this.quizzResult + 20 / this.questions.length;
       } else {
-        let selectCorrectAnswer = 'label:has(> input[name="answer"]):nth-child(' + this.questions[this.i].right_answer.index + ')';
-
-        (<HTMLInputElement>(
-          document.querySelector('label:has(> input[name="answer"]):nth-child(1)')
-        )).classList.add('correct');
-
-        (<NodeListOf<HTMLInputElement>>(
-          document.querySelectorAll('label:has(> input[name="answer"]):not(.correct)')
-        )).forEach((label) => {
-          label.classList.add('wrong');
-        });
-
         this.answerStatus = false;
       }
+      (<NodeListOf<HTMLInputElement>>(
+        document.querySelectorAll('input[name="answer"]')
+      )).forEach((label) => {
+        if (label.value == this.questions[this.i].right_answer.index) {
+          (<HTMLElement>label.parentNode).classList.add('correct');
+        } else {
+          (<HTMLElement>label.parentNode).classList.add('wrong');
+        }
+      });
       (<HTMLInputElement>(
         document.querySelector('#answers')
       )).style.pointerEvents = 'none';
@@ -85,9 +82,7 @@ export class QuestionsComponent {
       document.querySelector('#validate-answer')
     )).style.pointerEvents = 'auto';
     this.i = this.i + 1;
-    this.fadeAnimationState='default';
-    console.log(this.fadeAnimationState)
-    this.fadeAnimationState='fadeIn';
-    console.log(this.fadeAnimationState)
+    this.fadeAnimationState = 'default';
+    this.fadeAnimationState = 'fadeIn';
   }
 }
