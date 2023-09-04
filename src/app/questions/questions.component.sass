@@ -67,6 +67,12 @@ label:has(>input[name="answer"]:checked)
   background: green
   border: 2px solid
 
+label:has(>input[name="answer"]).correct
+  background-color: green
+
+label:has(>input[name="answer"]).wrong
+  background-color: red
+
 #return-catalog-btn
   position: sticky
   bottom: 1%

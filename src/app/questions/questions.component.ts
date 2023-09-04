@@ -8,9 +8,10 @@ declare let myExtJs: any;
   selector: 'app-questions',
   templateUrl: './questions.component.html',
   styleUrls: ['./questions.component.sass'],
-  animations: [animation.fadeSlideIn(500)],
+  animations: [animation.fadeSlideIn(), animation.fadeIn()],
 })
 export class QuestionsComponent {
+  fadeAnimationState: 'default' | 'fadeIn' = 'fadeIn';
   // Cette donnée est initialisée ici et REMONTEE au appComponent (enfant vers parent)
   @Output() showCatalogEvent = new EventEmitter<boolean>();
   i: number = 0;
@@ -45,6 +46,18 @@ export class QuestionsComponent {
         this.answerStatus = true;
         this.quizzResult = this.quizzResult + 20 / this.questions.length;
       } else {
+        let selectCorrectAnswer = 'label:has(> input[name="answer"]):nth-child(' + this.questions[this.i].right_answer.index + ')';
+
+        (<HTMLInputElement>(
+          document.querySelector('label:has(> input[name="answer"]):nth-child(1)')
+        )).classList.add('correct');
+
+        (<NodeListOf<HTMLInputElement>>(
+          document.querySelectorAll('label:has(> input[name="answer"]):not(.correct)')
+        )).forEach((label) => {
+          label.classList.add('wrong');
+        });
+
         this.answerStatus = false;
       }
       (<HTMLInputElement>(
@@ -72,5 +85,9 @@ export class QuestionsComponent {
       document.querySelector('#validate-answer')
     )).style.pointerEvents = 'auto';
     this.i = this.i + 1;
+    this.fadeAnimationState='default';
+    console.log(this.fadeAnimationState)
+    this.fadeAnimationState='fadeIn';
+    console.log(this.fadeAnimationState)
   }
 }

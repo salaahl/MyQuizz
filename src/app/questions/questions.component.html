@@ -1,4 +1,4 @@
-<div *ngIf="question !== undefined; else resultsBlock" id="question">
+<div *ngIf="question !== undefined; else resultsBlock" id="question" [@fadeIn]="fadeAnimationState">
   <div>
     Question {{ question.question_index + 1 }} sur {{ questions.length }}
   </div>
