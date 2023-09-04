@@ -48,10 +48,10 @@ export class QuestionsComponent {
       } else {
         this.answerStatus = false;
       }
-      (<NodeList>(
+      (<NodeListOf<HTMLInputElement>>(
         document.querySelectorAll('input[name="answer"]')
       )).forEach((label) => {
-        if ((<HTMLInputElement>label).value == this.questions[this.i].right_answer.index) {
+        if (label.value == this.questions[this.i].right_answer.index) {
           (<HTMLElement>label.parentNode).classList.add('correct');
         } else {
           (<HTMLElement>label.parentNode).classList.add('wrong');
