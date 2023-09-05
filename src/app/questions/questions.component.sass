@@ -39,11 +39,11 @@
   padding: 5px 10px 5px 10px
   border-radius: 30px
 
-#answer-status.correct-answer
-  background-color: green
+#answer-status.correct-answer, label:has(>input[name="answer"]).correct-answer
+  background-color: rgb(0, 102, 0)
 
-#answer-status.wrong-answer
-  background-color: red
+#answer-status.wrong-answer, label:has(>input[name="answer"]).wrong-answer
+  background-color: rgb(204, 0, 0)
 
 
 label:has(>input[name="answer"])
@@ -59,19 +59,10 @@ label:has(>input[name="answer"])
     padding: 30px
 
 label:has(>input[name="answer"]).btn-stylised:before
-  border-radius: 60px
-  background-color: rgb(0,128,0, 0.2)
-
+  border-radius: inherit
 
 label:has(>input[name="answer"]:checked)
-  background: green
   border: 2px solid
-
-label:has(>input[name="answer"]).correct
-  background-color: green
-
-label:has(>input[name="answer"]).wrong
-  background-color: red
 
 #return-catalog-btn
   position: sticky
