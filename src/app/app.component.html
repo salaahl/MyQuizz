@@ -1,27 +1,26 @@
 <div class="content" role="main">
   <h1>{{ title }}</h1>
-  <ng-container *ngFor="let catalog of questionsCatalog">
-    <div *ngIf="show == true" id="questions-catalog-container">
-      <div>
+  <div *ngIf="show == true" id="questions-catalog-container">
+    <div>
+      <ng-container *ngFor="let catalog of catalogs">
         <button
-          *ngIf="catalog.show == false"
           type="button"
           class="btn-stylised"
-          (click)="catalog.show = true; show = false"
+          (click)="show = false; questionsCatalog = catalog.questions"
         >
           {{ catalog.name }}
         </button>
-      </div>
+      </ng-container>
     </div>
+  </div>
 
-    <!-- Créer une nouvelle div rend la gestion plus simple en termes de CSS -->
-    <div *ngIf="catalog.show == true">
-      <app-questions
-        (showCatalogEvent)="showCatalog($event)"
-        [questions]="questions.securiteRoutiere"
-      ></app-questions>
-    </div>
-  </ng-container>
+  <!-- Créer une nouvelle div rend la gestion plus simple en termes de CSS -->
+  <div *ngIf="show == false">
+    <app-questions
+      (showCatalogEvent)="showCatalog($event)"
+      [questions]="questionsCatalog"
+    ></app-questions>
+  </div>
 
   <router-outlet></router-outlet>
 </div>
