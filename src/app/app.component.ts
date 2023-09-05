@@ -5,9 +5,9 @@ import * as animation from './animations/animations';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
-  animations: [],
+  styleUrls: ['./app.component.sass']
 })
+  
 export class AppComponent {
   title = 'Quizz';
 
@@ -18,10 +18,6 @@ export class AppComponent {
   questionsCatalog: any[] = [
     {
       name: 'Securité routière',
-      show: false,
-    },
-    {
-      name: 'Questions lorem',
       show: false,
     },
   ];
