@@ -15,19 +15,21 @@ export class AppComponent {
   questions = questionBank;
   show: boolean = true;
 
-  securiteRoutiere: any = {
-    name: 'Securité routière',
-    show: false,
-  };
-
-  questionsLorem: any = {
-    name: 'Questions lorem',
-    show: false,
-  };
+  questionsCatalog: any[] = [
+    {
+      name: 'Securité routière',
+      show: false,
+    },
+    {
+      name: 'Questions lorem',
+      show: false,
+    },
+  ];
 
   showCatalog(catalogSwitch: boolean) {
     this.show = catalogSwitch;
-    this.securiteRoutiere.show = false;
-    this.questionsLorem.show = false;
+    this.questionsCatalog.forEach((catalog) => {
+      catalog.show = false;
+    });
   }
 }
