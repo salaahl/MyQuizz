@@ -18,8 +18,8 @@ export class AppComponent {
 
   catalogs: any[] = [
     {
-      name: 'Lorem',
-      questions: this.questions.questionsLorem,
+      name: 'Retour à l\'école',
+      questions: this.questions.backToSchool,
       show: this.show,
     },
     {
